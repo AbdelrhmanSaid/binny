@@ -2,8 +2,8 @@
 
 namespace App\Commands;
 
-use Symfony\Component\Process\Process;
 use LaravelZero\Framework\Commands\Command as ZeroCommand;
+use Symfony\Component\Process\Process;
 
 abstract class Command extends ZeroCommand
 {
