@@ -2,11 +2,9 @@
 
 namespace App\Commands;
 
-use LaravelZero\Framework\Commands\Command;
-use Symfony\Component\Process\Process;
 use ZipArchive;
 
-class GitChanges extends Command
+class GitChangesCommand extends Command
 {
     /**
      * The signature of the command.
@@ -26,36 +24,6 @@ class GitChanges extends Command
      * @var string
      */
     protected $description = 'Get the changes between two commits, optionally create a zip file';
-
-    /**
-     * Create a new process instance.
-     *
-     * @param  string|array  $command
-     * @param  string|null  $path
-     * @return Process
-     */
-    public function process($command, $path = null)
-    {
-        $command = is_array($command) ? $command : explode(' ', $command);
-
-        return tap(new Process($command, $path), function ($process) {
-            $process->setTimeout(null);
-            $process->run();
-        });
-    }
-
-    /**
-     * Fail the command with the given error message.
-     *
-     * @param  string  $message
-     * @return void
-     */
-    protected function fail($message)
-    {
-        $this->error($message);
-
-        exit(Command::FAILURE);
-    }
 
     /**
      * Execute the console command.
